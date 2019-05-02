@@ -39,6 +39,7 @@ void createMenu();
 void difficult(int op);
 void mainMenu(int op);
 void play_pause(int op);
+void killAllBullets();
 
 int main(int argc,char** argv){
 	srand((unsigned)time(NULL));
@@ -278,6 +279,7 @@ void play_pause(int op){
 			switch(op){
 					case 0:
 						makeEnemies(MAX_ENEMIES);
+						killAllBullets();
 						sceneVector[0] = Airship(false);
 						isRunning = 1;
 						break;
@@ -289,4 +291,10 @@ void play_pause(int op){
 
 
 	 glutPostRedisplay();
+}
+
+void killAllBullets(){
+	for (int i = 0; i < MAX_BULLETS; i++)
+		bulletVector[i].die();
+	bulletsAlive = 0;
 }
